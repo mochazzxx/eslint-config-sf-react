@@ -1,11 +1,10 @@
 {
-  "name": "eslint-config-react-app",
+  "name": "eslint-config-sf-react",
   "version": "3.0.7",
-  "description": "ESLint configuration used by Create React App",
-  "repository": "facebook/create-react-app",
+  "description": "ESLint configuration used by SF",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/facebook/create-react-app/issues"
+    "url": "https://github.com/babyisun/eslint-config-sf-react"
   },
   "files": [
     "index.js"
