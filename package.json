@@ -1,6 +1,6 @@
 {
   "name": "eslint-config-sf-react",
-  "version": "3.0.7",
+  "version": "1.0.0",
   "description": "ESLint configuration used by SF",
   "license": "MIT",
   "bugs": {
