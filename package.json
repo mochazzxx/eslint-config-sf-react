@@ -1,11 +1,17 @@
 {
   "name": "eslint-config-sf-react",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "ESLint configuration used by SF",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/babyisun/eslint-config-sf-react"
   },
+  "keywords": [
+    "eslint",
+    "eslint config",
+    "configuration",
+    "sf eslint"
+  ],
   "files": [
     "index.js"
   ],
