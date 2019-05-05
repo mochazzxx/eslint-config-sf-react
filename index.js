@@ -28,6 +28,8 @@ module.exports = {
 
   parser: 'babel-eslint',
 
+  extends: ["eslint:recommended", "plugin:prettier/recommended"],
+
   plugins: ['import', 'flowtype', 'jsx-a11y', 'react'],
 
   env: {
@@ -185,16 +187,22 @@ module.exports = {
     'getter-return': 'warn',
 
     // https://github.com/benmosher/eslint-plugin-import/tree/master/docs/rules
+    'import/no-unresolved': 'error',
+    'import/extensions': 'off',
+    'import/no-self-import': 'error',
+    'import/named': 'warn',
     'import/first': 'error',
     'import/no-amd': 'error',
+    'import/no-duplicates': 'error',
+    'import/newline-after-import': ['error', { 'count': 2 }],
+    'import/no-unassigned-import': ['error', {'allow': ['**/*.css', '**/**.scss', '**/**.less', '**/scripts/*.js']}],
+    'import/order': ['error', {'group': ['builtin', 'external'], 'newlines-between': 'always'}, ],
+    'import/prefer-default-export': 'warn',
     'import/no-webpack-loader-syntax': 'error',
 
     // https://github.com/yannickcr/eslint-plugin-react/tree/master/docs/rules
     'react/forbid-foreign-prop-types': ['warn', { allowInPropTypes: true }],
-    'react/jsx-no-comment-textnodes': 'warn',
     'react/jsx-no-duplicate-props': ['warn', { ignoreCase: true }],
-    'react/jsx-no-target-blank': 'warn',
-    'react/jsx-no-undef': 'error',
     'react/jsx-pascal-case': [
       'warn',
       {
@@ -202,20 +210,37 @@ module.exports = {
         ignore: [],
       },
     ],
-    'react/jsx-uses-react': 'warn',
-    'react/jsx-uses-vars': 'warn',
-    'react/no-danger-with-children': 'warn',
     // Disabled because of undesirable warnings
     // See https://github.com/facebook/create-react-app/issues/5204 for
     // blockers until its re-enabled
     // 'react/no-deprecated': 'warn',
-    'react/no-direct-mutation-state': 'warn',
-    'react/no-is-mounted': 'warn',
     'react/no-typos': 'error',
-    'react/react-in-jsx-scope': 'error',
     'react/require-render-return': 'error',
     'react/style-prop-object': 'warn',
-
+    'react/no-multi-comp': 'warn',
+    'react/prefer-es6-class': 'warn',
+    'react/no-this-in-sfc': 'error',
+    'react/self-closing-comp': 'error',
+    'react/sort-comp': 'error',
+    'react/jsx-boolean-value': 'warn',
+    'react/jsx-indent': 'warn',
+    'react/jsx-indent-props': 'warn',
+    'react/jsx-closing-bracket-location': 'warn',
+    'react / jsx-closing-tag-location': 'warn',
+    'react/jsx-curly-spacing': ['error', {"when": "always", "children": true}],
+    'react/void-dom-elements-no-children': 'error',
+    "react/jsx-equals-spacing": ['warn', [2, "never"]],
+    'react/jsx-key': 'warn',
+    'react/jsx-no-bind': 'warn',
+    'react/prop-types': 'off',
+    'react/no-multi-comp': 'off',
+    'react/no-array-index-key': 'off',
+    'react/jsx-filename-extension': 'off',
+    'react/jsx-max-props-per-line': ['error', { 'maximum': 5, 'when': 'multiline' }],
+    'react/jsx-first-prop-new-line': 'off',
+    'react/jsx-closing-bracket-location': 'off',
+    'react/prefer-stateless-function': 'off',
+    'react/destructuring-assignment': 'off',
     // https://github.com/evcohen/eslint-plugin-jsx-a11y/tree/master/docs/rules
     'jsx-a11y/accessible-emoji': 'warn',
     'jsx-a11y/alt-text': 'warn',
@@ -244,6 +269,9 @@ module.exports = {
     // https://github.com/gajus/eslint-plugin-flowtype
     'flowtype/define-flow-type': 'warn',
     'flowtype/require-valid-file-annotation': 'warn',
+    'jsx-a11y/anchor-has-content': 'warn',
+    'jsx-a11y/anchor-has-content': 'warn',
     'flowtype/use-flow-type': 'warn',
+    'prefer-destructuring': ['error', { 'array': false, 'object': true}]
   },
 };
