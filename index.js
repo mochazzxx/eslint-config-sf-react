@@ -28,7 +28,7 @@ module.exports = {
 
   extends: ['eslint:recommended', 'plugin:jsx-a11y/recommended', 'plugin:react/recommended', 'plugin:prettier/recommended'],
 
-  plugins: ['flowtype', 'jsx-a11y', 'react', 'prettier'],
+  plugins: ['jsx-a11y', 'react', 'prettier'],
 
   env: {
     browser: true,
