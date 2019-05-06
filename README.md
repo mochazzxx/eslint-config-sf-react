@@ -33,10 +33,10 @@ If you want to enable even more accessibility rules, you can create an `.eslintr
 
 ```json
 {
-  "extends": ["sf-react", "sf-js", "sf-vue", "sf-ts"],
+  "extends": ["sf-js", "sf-react", "sf-vue", "sf-ts", "sf-mp"],
   "plugins": ["sf-plugin"]
 }
 ```
 
-## get more
-[SF-REACT-RULES](./SF-REACT-RULES.md)
+## Get more
+[React detailed rules](./SF-REACT-RULES.md)
