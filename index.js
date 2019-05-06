@@ -28,7 +28,7 @@ module.exports = {
 
   parser: 'babel-eslint',
 
-  extends: ['eslint:recommended', 'plugin:jsx-a11y/recommended', 'plugin:react/recommended', plugin:prettier/recommended'],
+  extends: ['eslint:recommended', 'plugin:jsx-a11y/recommended', 'plugin:react/recommended', 'plugin:prettier/recommended'],
 
   plugins: ['airbnb-base', 'flowtype', 'jsx-a11y', 'react', 'prettier'],
 
