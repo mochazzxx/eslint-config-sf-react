@@ -53,6 +53,7 @@ module.exports = {
   },
 
   rules: {
+    "no-console": "warn",
     // https://github.com/yannickcr/eslint-plugin-react/tree/master/docs/rules
     "react/forbid-foreign-prop-types": ["warn", { allowInPropTypes: true }],
     "react/jsx-pascal-case": [
@@ -79,6 +80,9 @@ module.exports = {
     "react/jsx-equals-spacing": ["error", "never"],
     "react/jsx-no-bind": ["warn", {"allowArrowFunctions": true, "allowFunctions": true }],
     "react/jsx-max-props-per-line": ["error", { "maximum": 3, "when": "always" }],
+    "react/prop-types": "off",
+    "react/jsx-curly-spacing": "off",
+    "react/jsx-one-expression-per-line": "off",
     //https://github.com/evcohen/eslint-plugin-jsx-a11y 
     "jsx-a11y/click-events-have-key-events": "off",
     "jsx-a11y/nteractive-supports-focus": "off",
