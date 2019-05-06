@@ -38,5 +38,5 @@ If you want to enable even more accessibility rules, you can create an `.eslintr
 }
 ```
 
-## 参考
+## get more
 [SF-REACT-RULES](./SF-REACT-RULES.md)
