@@ -21,8 +21,6 @@
 // This is dangerous as it hides accidentally undefined variables.
 // We blacklist the globals that we deem potentially confusing.
 // To use them, explicitly reference them, e.g. `window.name` or `window.status`.
-var restrictedGlobals = require('confusing-browser-globals');
-
 module.exports = {
   root: true,
 
@@ -72,32 +70,28 @@ module.exports = {
     'react/self-closing-comp': 'error',
     'react/sort-comp': 'error',
     'react/jsx-boolean-value': 'warn',
-    'react/jsx-indent': 'warn',
+    'react/jsx-indent': ['warn', 2],
     'react/jsx-indent-props': 'warn',
     'react/jsx-closing-bracket-location': 'warn',
-    'react / jsx-closing-tag-location': 'warn',
+    'react/jsx-closing-tag-location': 'warn',
     'react/jsx-curly-spacing': ['error', {"when": "always", "children": true}],
     'react/void-dom-elements-no-children': 'error',
     "react/jsx-equals-spacing": ['warn', [2, "never"]],
-    'react/jsx-no-bind': 'warn',
-    'react/jsx-max-props-per-line': ['error', { 'maximum': 5, 'when': 'multiline' }],
+    'react/jsx-no-bind': ['warn', {"allowArrowFunctions": true, "allowFunctions": true }],
+    'react/jsx-max-props-per-line': ['error', { 'maximum': 3, 'when': 'always' }],
     //https://github.com/evcohen/eslint-plugin-jsx-a11y 
-    'jsx-a11y/click-events-have-key-events': 'warn',
-    'jsx-a11y/nteractive-supports-focus': 'warn',
+    'jsx-a11y/click-events-have-key-events': 'off',
+    'jsx-a11y/nteractive-supports-focus': 'off',
     'jsx-a11y/no-interactive-element-to-noninteractive-role': 'warn',
+    'jsx-a11y/no-noninteractive-element-to-interactive-role': 'warn',
     'jsx-a11y/media-has-caption': 'off',
     'jsx-a11y/mouse-events-have-key-events': 'off',
     'jsx-a11y/no-noninteractive-element-interactions': 'off',
-    'jsx-a11y/no-noninteractive-element-to-interactive-role': 'off',
     'jsx-a11y/no-onchange': 'off',
     'jsx-a11y/no-static-element-interactions': 'off',
     'jsx-a11y/no-access-key': 'off',
-    'flowtype/define-flow-type': 'warn',
-    'flowtype/require-valid-file-annotation': 'warn',
-    'jsx-a11y/anchor-has-content': 'warn',
     'jsx-a11y/anchor-has-content': 'warn',
     // https://github.com/gajus/eslint-plugin-flowtype
-    'flowtype/use-flow-type': 'warn',
     'prettier/prettier': [
       'error',
       {

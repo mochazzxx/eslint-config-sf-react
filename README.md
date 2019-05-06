@@ -37,3 +37,6 @@ If you want to enable even more accessibility rules, you can create an `.eslintr
   "plugins": ["sf-plugin"]
 }
 ```
+
+## 参考
+[SF-REACT-RULES](./SF-REACT-RULES.md)

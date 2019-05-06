@@ -9,16 +9,19 @@
   3. [避免静态的类属性和组件生命周期拼写错误](#no-typos-避免静态的类属性和组件生命周期拼写错误)
   4. [styles 属性必须为对象](#style-prop-object-style-属性必须为对象)
   5. [在同一个文件中只能声明一个组件](#no-multi-comp-在同一个文件中只能声明一个组件)
-  6. [强制使用-es6-的-class-创建组件](#prefer-es6-class-强制使用-es6-的-class-创建组件)
-  7. [单引号还是双引号](#quotes-单引号还是双引号)
-  8. [空格](#spacing-空格)
-  9. [属性](#props-属性)
-  10. [Refs引用](#refs)
-  11. [括号](#parentheses-括号)
-  12. [标签](#tags-标签)
-  13. [函数/方法](#methods-函数)
-  14. [模块生命周期](#ordering-react-模块生命周期)
-  15. [避免模块导入自身](#no-self-impor-避免模块导入自身)
+  6. [强制使用 es6 的 class 创建组件](#prefer-es6-class-强制使用-es6-的-class-创建组件)
+  7. [函数组件中禁止使用 this](#no-this-in-sfc-函数组件中禁止使用-this)
+  8. [无子节点组件强制自闭合](#self-closing-comp-无子节点组件强制自闭合)
+  9. [强制组件生命周期和事件处理函数书写顺序](#sort-comp-强制组件生命周期和事件处理函数书写顺序)
+  10. [JSX 元素属性为布尔值时, true 可以省略](#jax-boolean-value-JSX-元素属性为布尔值时,-true-可以省略)
+  11. [jsx props 风格缩进 2 空格](#jsx-indent-props-jsx-props-风格缩进-2-空格)
+  12. [校验多行 jsx 元素的标签结束位置](#jsx-closing-bracket-location-校验多行-jsx-元素的标签结束位置)
+  13. [校验有子节点 jsx 元素结束标签位置](#jsx-closing-tag-location-校验有子节点-jsx-元素结束标签位置)
+  14. [强制校验保证 jsx 元素花括号内部的空格](#jsx-curly-spacing-强制校验保证-jsx-元素花括号内部的空格)
+  15. [强制自闭合元素不能添加 children](#void-dom-elements-no-children-强制自闭合元素不能添加-children)
+  16. [校验 jsx 元素属性名和 = 之前不得有空格](#jsx-equals-spacing-校验-jsx-元素属性名和-=-之前不得有空格)
+  17. [禁止在事件处理函数中使用 bind 建议使用箭头函数](#jsx-no-bind-禁止在事件处理函数中使用-bind-建议使用箭头函数)
+  18. [校验 jsx 元素单行上属性个数最大值](#jsx-max-props-per-line-校验-jsx-元素单行上属性个数最大值)
 
 
 ## forbid-foreign-prop-types 校验所有对象不使用 propTypes 属性
@@ -324,7 +327,7 @@
             super(props)
             this.state = {}
         }
-        
+
         componentDidMount() {}
 
         static propTypes = {}
@@ -376,63 +379,227 @@
     }
 ```
 
-## no-self-impor 避免模块导入自身
+## jax-boolean-value JSX 元素属性为布尔值时, true 可以省略
 
 ### bad
 
-```js
-    // foo.js
-    import foo from './foo';
+```jsx
 
-    const foo = require('./foo');
-```
+<Hello personal={true}/>
 
-```js
-    // index.js
-    import index from '.';
-
-    const index = require('.');
 ```
 
 ### good
 
-```js
-// foo.js
-    import bar from './bar';
+```jsx
 
-    const bar = require('./bar');
-```
-
-## named 验证导入的命名是否在所引用的模块导出集中
-
-### example
-
-```js
-
-    export const foo = " I'm so foo "
+<Hello personal/>
 
 ```
+
+### jsx-indent jsx 风格缩进 2 空格
 
 ### bad
 
 ```js
 
-    import { notFoo } from './foo'
-    // ES7 proposal
-    export { notFoo as defNotBar } from './foo'
+    <App>
+    <Hello />
+    </App>   
 
 ```
 
 ### good
 
 ```js
+    <App>
+        <Hello />
+    </App>
+```
 
-    import { foo } from './foo'
-    // ES7 proposal
-    export { foo as bar } from './foo'
+### jsx-indent-props jsx props 风格缩进 2 空格
+
+### bad
+
+```js
+
+    <Hello
+      firstName="John"
+       lastName="Doe"
+    />   
 
 ```
 
-## no-duplicates 验证是否导入相同的模块
+### good
+
+```js
+    <Hello
+      firstName="John"
+      lastName="Doe"
+    />
+```
+
+## jsx-closing-bracket-location 校验多行 jsx 元素的标签结束位置
+
+### bad
+
+```js
+    <Hello
+    lastName="Smith"
+    firstName="John" />;
+
+    <Hello
+    lastName="Smith"
+    firstName="John"
+    />;
+```
+
+### good
+
+```js
+    <Hello firstName="John" lastName="Smith" />;
+
+    <Hello
+    firstName="John"
+    lastName="Smith"
+    />;
+```
+
+## jsx-closing-tag-location 校验有子节点 jsx 元素结束标签位置
+
+### bad
+
+```js
+    <Hello>
+        marklar
+        </Hello>
+    <Hello>
+    marklar</Hello>
+```
+
+### good
+
+```js
+    <Hello>
+        marklar
+    </Hello>
+
+    <Hello>marklar</Hello>
+```
+
+## jsx-curly-spacing 强制校验保证 jsx 元素花括号内部的空格
+
+### bad
+
+```js
+    <Hello name={firstname} />;
+    <Hello name={ firstname} />;
+    <Hello name={firstname } />;
+    <Hello>{firstname}</Hello>;
+```
+
+### good
+
+```js
+    <Hello name={ firstname } />;
+    <Hello name={ {firstname: 'John', lastname: 'Doe'} } />;
+    <Hello name={
+    firstname
+    } />;
+    <Hello>{ firstname }</Hello>;
+    <Hello>{
+    firstname
+    }</Hello>;
+```
+
+## void-dom-elements-no-children 强制自闭合元素不能添加 children
+
+### bad
+
+```js
+    <br>Children</br>
+    <br children='Children' />
+    <br dangerouslySetInnerHTML={{ __html: 'HTML' }} />
+    React.createElement('br', undefined, 'Children')
+    React.createElement('br', { children: 'Children' })
+    React.createElement('br', { dangerouslySetInnerHTML: { __html: 'HTML' }})
+```
+
+### good
+
+```js
+    <div>Children</div>
+    <div children='Children' />
+    <div dangerouslySetInnerHTML={{ __html: 'HTML' }} />
+    React.createElement('div', undefined, 'Children')
+    React.createElement('div', { children: 'Children' })
+    React.createElement('div', { dangerouslySetInnerHTML: { __html: 'HTML' }})
+```
+
+## jsx-equals-spacing 校验 jsx 元素属性名和 = 之前不得有空格
+
+### bad
+
+```js
+    <Hello name = { firstname } />;
+    <Hello name ={ firstname } />;
+    <Hello name= { firstname } />;
+```
+
+### good
+
+```js
+    <Hello name={ firstname } />;
+    <Hello name />;
+    <Hello { ...props } />;
+```
+
+## jsx-no-bind 禁止在事件处理函数中使用 bind 建议使用箭头函数
+
+### bad
+
+```js
+    <Foo onClick={this._handleClick.bind(this)}></Foo>
+```
+
+### good
+
+```js
+    <Foo onClick={() => console.log('Hello!')}></Foo>
+```
+
+## jsx-max-props-per-line 校验 jsx 元素单行上属性个数最大值
+
+### bad
+
+```js
+    <Hello firstName="John" secondName="Mike" lastName="Smith" />
+```
+
+### good
+
+```js
+    <Hello 
+        firstName="John" 
+        secondName="Mike" 
+        lastName="Smith" 
+    />
+```
+
+## 修改规则配置
+
+*由于 eslint-plugin-jsx-a11y 推荐用法上大多为 error 所以结合业需求修改一些配置关闭或 warn*
+
+- click-events-have-key-events 强制执行 onClick 必须伴随一下几个事件 onKeyUp, onKeyDown, onKeyPress 之一, 为了兼顾残障用户的阅读器阅读 <font color=red>**off**</font>
+- nteractive-supports-focus 可交互元素必须是可聚焦的, 需要添加 tabIndex 才能通过规则 <font color=red>**off**</font>
+- no-interactive-element-to-noninteractive-role 不能通过 role 属性将交互元素转换为非交互元素 <font color=yellow>**warn**</font>
+- media-has-caption 媒体元素必须具有添加字幕, 来满足残障用户提高可访问性 <font color=red>**off**</font>
+- mouse-events-have-key-events 强制 onmouseover/onmousemove 伴随 onBlur/onFocus 事件, 为了满足无法使用鼠标情况 <font color=red>**off**</font>
+- no-noninteractive-element-interactions 非交互元素不应添加事件处理函数 <font color=red>**off**</font>
+- no-noninteractive-element-to-interactive-role 不能通过 role 属性将非交互元素转换为交互元素 <font color=yellow>**warn**</font>
+- no-onchange 在选择性菜单上强制使用 onBlur 为了仅限屏幕和键盘阅读的用户 <font color=red>**off**</font>
+- no-static-element-interactions 在对静态无语义元素添加事件处理函数时应当通过 role 赋予对应的角色值 <font color=red>**off**</font>
+- no-access-key 强制不使用键盘快捷键 <font color=red>**off**</font>
+- anchor-has-content a 标签必须要有内容 <font color=yellow>**warn**</font>
 
 
