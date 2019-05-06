@@ -30,7 +30,7 @@ module.exports = {
 
   extends: ['eslint:recommended', 'plugin:jsx-a11y/recommended', 'plugin:react/recommended', 'plugin:prettier/recommended'],
 
-  plugins: ['airbnb-base', 'flowtype', 'jsx-a11y', 'react', 'prettier'],
+  plugins: ['flowtype', 'jsx-a11y', 'react', 'prettier'],
 
   env: {
     browser: true,
@@ -57,7 +57,6 @@ module.exports = {
   rules: {
     // https://github.com/yannickcr/eslint-plugin-react/tree/master/docs/rules
     'react/forbid-foreign-prop-types': ['warn', { allowInPropTypes: true }],
-    'react/jsx-no-duplicate-props': ['warn', { ignoreCase: true }],
     'react/jsx-pascal-case': [
       'warn',
       {
@@ -68,7 +67,7 @@ module.exports = {
     'react/no-typos': 'error',
     'react/style-prop-object': 'warn',
     'react/no-multi-comp': 'warn',
-    'react/prefer-es6-class': 'warn',
+    'react/prefer-es6-class': ['warn', 'always'],
     'react/no-this-in-sfc': 'error',
     'react/self-closing-comp': 'error',
     'react/sort-comp': 'error',
