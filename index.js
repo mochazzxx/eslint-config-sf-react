@@ -55,9 +55,6 @@ module.exports = {
   rules: {
     "no-console": "warn",
     // https://github.com/yannickcr/eslint-plugin-react/tree/master/docs/rules
-    'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off', // 打包时禁止debugger
-    'no-console': process.env.NODE_ENV === 'production' ? 'error' : 'off', // 打包时禁止console
-    'no-alert': process.env.NODE_ENV === 'production' ? 'error' : 'off', // 打包时禁止console
     "react/forbid-foreign-prop-types": ["warn", { allowInPropTypes: true }],
     "react/jsx-pascal-case": [
       "warn",
@@ -67,7 +64,6 @@ module.exports = {
       },
     ],
     "react/no-typos": "error",
-    "react/prop-types": "off",
     "react/style-prop-object": "warn",
     "react/no-multi-comp": "warn",
     "react/prefer-es6-class": ["warn", "always"],
@@ -79,11 +75,11 @@ module.exports = {
     "react/jsx-indent-props": "warn",
     "react/jsx-closing-bracket-location": "warn",
     "react/jsx-closing-tag-location": "warn",
-    "react/jsx-curly-spacing": ["error", {"when": "never", "children": true}],
+    "react/jsx-curly-spacing": ["error", {"when": "always", "children": true}],
     "react/void-dom-elements-no-children": "error",
     "react/jsx-equals-spacing": ["error", "never"],
     "react/jsx-no-bind": ["warn", {"allowArrowFunctions": true, "allowFunctions": true }],
-    "react/jsx-max-props-per-line": ["error", { "maximum": 3, "when": "always" }],
+    "react/jsx-max-props-per-line": ["error", { "maximum": 4, "when": "always" }],
     "react/prop-types": "off",
     "react/jsx-curly-spacing": "off",
     "react/jsx-one-expression-per-line": "off",
@@ -100,5 +96,14 @@ module.exports = {
     "jsx-a11y/no-access-key": "off",
     "jsx-a11y/anchor-has-content": "warn",
     // https://github.com/gajus/eslint-plugin-flowtype
+    "prettier/prettier": [
+      "error",
+      {
+        printWidth: 100, // 一行的字符数，如果超过会进行换行。默认80
+        singleQuote: true, // 字符串是否使用单引号。默认false使用双引号
+        trailingComma: "all", // 是否使用尾逗号，三个可选之’<none/es5/all>"
+        endOfLine: "lf",
+      },
+    ],
   },
 };
