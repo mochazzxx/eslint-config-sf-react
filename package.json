@@ -1,6 +1,6 @@
 {
   "name": "eslint-config-sf-react",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "ESLint configuration used by SF",
   "license": "MIT",
   "bugs": {
@@ -17,9 +17,11 @@
   ],
   "peerDependencies": {
     "babel-eslint": "9.x",
-    "eslint": "5.x",
+    "eslint": "5.x"
+  },
+  "dependencies": {
     "eslint-plugin-jsx-a11y": "6.x",
     "eslint-plugin-react": "7.x",
-    "eslint-plugin-prettier": "^4.2.0"
+    "eslint-plugin-prettier": "^4.x"
   }
 }
