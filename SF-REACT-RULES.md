@@ -299,7 +299,7 @@
     }
 ```
 
-### goood
+### good
 
 ```js
     function Foo(props) {
