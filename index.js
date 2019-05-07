@@ -96,5 +96,13 @@ module.exports = {
     "jsx-a11y/no-access-key": "off",
     "jsx-a11y/anchor-has-content": "warn",
     // https://github.com/gajus/eslint-plugin-flowtype
+    "prettier/prettier": [
+      "error",
+      {
+        printWidth: 100, // 一行的字符数，如果超过会进行换行。默认80
+        singleQuote: true, // 字符串是否使用单引号。默认false使用双引号
+        trailingComma: "all", // 是否使用尾逗号，三个可选之’<none/es5/all>"
+      },
+    ],
   },
 };
