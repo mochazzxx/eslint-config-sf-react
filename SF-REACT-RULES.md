@@ -23,21 +23,99 @@
   18. [避免外部的 propTypes 使用](#forbid-foreign-prop-types-校验所有对象不使用-propTypes-属性)
 
 
-## jsx-pascal-case 自定义组件强制使用驼峰
+## sort-comp 强制组件生命周期和事件处理函数书写顺序
+
+### 按照以下顺序:
+- 静态属性和方法
+- 生命周期函数: 
+    - displayName
+    - propTypes
+    - contextTypes
+    - childContextTypes
+    - mixins
+    - statics
+    - defaultProps
+    - constructor
+    - getDefaultProps
+    - state
+    - getInitialState
+    - getChildContext
+    - getDerivedStateFromProps
+    - componentWillMount
+    - UNSAFE_componentWillMount
+    - componentDidMount
+    - componentWillReceiveProps
+    - UNSAFE_componentWillReceiveProps
+    - shouldComponentUpdate
+    - componentWillUpdate
+    - UNSAFE_componentWillUpdate
+    - getSnapshotBeforeUpdate
+    - componentDidUpdate
+    - componentDidCatch
+    - componentWillUnmount
+- 自定义方法
+- render 方法
 
 ### bad
 
-```js
-    <Text_Component />
-    <Mycomponent />
+```jsx
+    class Hello extends React.Component {
+        static defaultProps = {}
+
+        constructor(props) {
+            super(props)
+            this.state = {}
+        }
+
+        componentDidMount() {}
+
+        static propTypes = {}
+
+        renderSpan = () => (<span>I'm span</span>)
+
+        handleClick = () => {}
+
+        componentWillMount() {}
+
+        render() {
+            return (
+                <div onClick={this.handleClick}>
+                    {this.renderSpan()}
+                </div>
+            )
+        }
+    }
 ```
 
 ### good
 
-```js
-    <TextComponent />
-    <MyComponent />
-    <div />
+```jsx
+    class Hello extends React.Component {
+        static propTypes = {}
+
+        static defaultProps = {}
+
+        constructor(props) {
+            super(props)
+            this.state = {}
+        }
+
+        componentWillMount() {}
+
+        componentDidMount() {}
+
+        handleClick = () => {}
+
+        renderSpan = () => (<span>I'm span</span>)
+
+        render() {
+            return (
+                <div onClick={this.handleClick}>
+                    {this.renderSpan()}
+                </div>
+            )
+        }
+    }
 ```
 
 ## no-multi-comp 在同一个文件中只能声明一个组件
@@ -68,6 +146,24 @@
             return <Hello name="John" />;
         }
     }
+```
+
+
+## jsx-pascal-case 自定义组件强制使用驼峰
+
+### bad
+
+```js
+    <Text_Component />
+    <Mycomponent />
+```
+
+### good
+
+```js
+    <TextComponent />
+    <MyComponent />
+    <div />
 ```
 
 ## no-typos 避免静态的类属性和组件生命周期拼写错误
@@ -264,101 +360,6 @@
     var Profile = <Hello name="John"><img src="picture.png" /></Hello>;
 
     var HelloSpace = <Hello>{' '}</Hello>;
-```
-
-## sort-comp 强制组件生命周期和事件处理函数书写顺序
-
-### 按照以下顺序:
-- 静态属性和方法
-- 生命周期函数: 
-    - displayName
-    - propTypes
-    - contextTypes
-    - childContextTypes
-    - mixins
-    - statics
-    - defaultProps
-    - constructor
-    - getDefaultProps
-    - state
-    - getInitialState
-    - getChildContext
-    - getDerivedStateFromProps
-    - componentWillMount
-    - UNSAFE_componentWillMount
-    - componentDidMount
-    - componentWillReceiveProps
-    - UNSAFE_componentWillReceiveProps
-    - shouldComponentUpdate
-    - componentWillUpdate
-    - UNSAFE_componentWillUpdate
-    - getSnapshotBeforeUpdate
-    - componentDidUpdate
-    - componentDidCatch
-    - componentWillUnmount
-- 自定义方法
-- render 方法
-
-### bad
-
-```jsx
-    class Hello extends React.Component {
-        static defaultProps = {}
-
-        constructor(props) {
-            super(props)
-            this.state = {}
-        }
-
-        componentDidMount() {}
-
-        static propTypes = {}
-
-        renderSpan = () => (<span>I'm span</span>)
-
-        handleClick = () => {}
-
-        componentWillMount() {}
-
-        render() {
-            return (
-                <div onClick={this.handleClick}>
-                    {this.renderSpan()}
-                </div>
-            )
-        }
-    }
-```
-
-### good
-
-```jsx
-    class Hello extends React.Component {
-        static propTypes = {}
-
-        static defaultProps = {}
-
-        constructor(props) {
-            super(props)
-            this.state = {}
-        }
-
-        componentWillMount() {}
-
-        componentDidMount() {}
-
-        handleClick = () => {}
-
-        renderSpan = () => (<span>I'm span</span>)
-
-        render() {
-            return (
-                <div onClick={this.handleClick}>
-                    {this.renderSpan()}
-                </div>
-            )
-        }
-    }
 ```
 
 ## jax-boolean-value JSX 元素属性为布尔值时, true 可以省略
