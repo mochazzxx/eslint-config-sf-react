@@ -79,7 +79,7 @@ module.exports = {
     "react/void-dom-elements-no-children": "error",
     "react/jsx-equals-spacing": ["error", "never"],
     "react/jsx-no-bind": ["warn", {"allowArrowFunctions": true, "allowFunctions": true }],
-    "react/jsx-max-props-per-line": ["error", { "maximum": 4, "when": "always" }],
+    "react/jsx-max-props-per-line": ["error", { "maximum": 1, "when": "always" }],
     "react/prop-types": "off",
     "react/jsx-curly-spacing": "off",
     "react/jsx-one-expression-per-line": "off",
