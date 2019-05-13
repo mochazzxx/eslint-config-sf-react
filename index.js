@@ -69,7 +69,45 @@ module.exports = {
     "react/prefer-es6-class": ["warn", "always"],
     "react/no-this-in-sfc": "error",
     "react/self-closing-comp": "error",
-    "react/sort-comp": "error",
+    "react/sort-comp": [
+      "error",
+      {
+      order: [
+        'static-methods',
+        'lifecycle',
+        'everything-else',
+        'render'
+      ],
+      groups: {
+        lifecycle: [
+          'displayName',
+          'propTypes',
+          'contextTypes',
+          'childContextTypes',
+          'mixins',
+          'statics',
+          'defaultProps',
+          'constructor',
+          'getDefaultProps',
+          'state',
+          'getInitialState',
+          'getChildContext',
+          'getDerivedStateFromProps',
+          'componentWillMount',
+          'UNSAFE_componentWillMount',
+          'componentDidMount',
+          'componentWillReceiveProps',
+          'UNSAFE_componentWillReceiveProps',
+          'shouldComponentUpdate',
+          'componentWillUpdate',
+          'UNSAFE_componentWillUpdate',
+          'getSnapshotBeforeUpdate',
+          'componentDidUpdate',
+          'componentDidCatch',
+          'componentWillUnmount'
+        ]
+      }
+    }],
     "react/jsx-boolean-value": "warn",
     "react/jsx-indent": ["warn", 2],
     "react/jsx-indent-props": "warn",
