@@ -109,7 +109,7 @@ module.exports = {
       }
     }],
     "react/jsx-boolean-value": "warn",
-    "react/jsx-indent": ["warn", 2],
+    "react/jsx-indent": "off",  // 不关闭可能会与prettier冲突
     "react/jsx-indent-props": "warn",
     "react/jsx-closing-bracket-location": "warn",
     "react/jsx-closing-tag-location": "warn",
