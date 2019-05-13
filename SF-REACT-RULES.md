@@ -1,288 +1,27 @@
-# Airbnb React/JSX 编码规范 plus
+# SF-React/JSX 编码规范
 
-*结合 airbnb 的 react 书写规范, 在 eslint-plugin-react eslint-plugin-jsx-a11y 推荐用法上做了调整*
+结合 airbnb 的 react 书写规范, 在 eslint-plugin-react eslint-plugin-jsx-a11y 推荐用法上做了调整
 
-## 新增规则
-
-  1. [避免外部的 propTypes 使用](#forbid-foreign-prop-types-校验所有对象不使用-propTypes-属性)
-  2. [自定义组件强制使用驼峰](#jsx-pascal-case-自定义组件强制使用驼峰)
-  3. [避免静态的类属性和组件生命周期拼写错误](#no-typos-避免静态的类属性和组件生命周期拼写错误)
-  4. [styles 属性必须为对象](#style-prop-object-style-属性必须为对象)
-  5. [在同一个文件中只能声明一个组件](#no-multi-comp-在同一个文件中只能声明一个组件)
+## 主要规则
+  1. [强制组件生命周期和事件处理函数书写顺序](#sort-comp-强制组件生命周期和事件处理函数书写顺序)
+  2. [在同一个文件中只能声明一个组件](#no-multi-comp-在同一个文件中只能声明一个组件)
+  3. [自定义组件强制使用驼峰](#jsx-pascal-case-自定义组件强制使用驼峰)
+  4. [避免静态的类属性和组件生命周期拼写错误](#no-typos-避免静态的类属性和组件生命周期拼写错误)
+  5. [styles 属性必须为对象](#style-prop-object-style-属性必须为对象)
   6. [强制使用 es6 的 class 创建组件](#prefer-es6-class-强制使用-es6-的-class-创建组件)
   7. [函数组件中禁止使用 this](#no-this-in-sfc-函数组件中禁止使用-this)
   8. [无子节点组件强制自闭合](#self-closing-comp-无子节点组件强制自闭合)
-  9. [强制组件生命周期和事件处理函数书写顺序](#sort-comp-强制组件生命周期和事件处理函数书写顺序)
-  10. [JSX 元素属性为布尔值时, true 可以省略](#jax-boolean-value-JSX-元素属性为布尔值时,-true-可以省略)
-  11. [jsx props 风格缩进 2 空格](#jsx-indent-props-jsx-props-风格缩进-2-空格)
-  12. [校验多行 jsx 元素的标签结束位置](#jsx-closing-bracket-location-校验多行-jsx-元素的标签结束位置)
-  13. [校验有子节点 jsx 元素结束标签位置](#jsx-closing-tag-location-校验有子节点-jsx-元素结束标签位置)
-  14. [强制校验保证 jsx 元素花括号内部的空格](#jsx-curly-spacing-强制校验保证-jsx-元素花括号内部的空格)
-  15. [强制自闭合元素不能添加 children](#void-dom-elements-no-children-强制自闭合元素不能添加-children)
-  16. [校验 jsx 元素属性名和 = 之前不得有空格](#jsx-equals-spacing-校验-jsx-元素属性名和-=-之前不得有空格)
-  17. [禁止在事件处理函数中使用 bind 建议使用箭头函数](#jsx-no-bind-禁止在事件处理函数中使用-bind-建议使用箭头函数)
-  18. [校验 jsx 元素单行上属性个数最大值](#jsx-max-props-per-line-校验-jsx-元素单行上属性个数最大值)
+  9. [JSX 元素属性为布尔值时, true 可以省略](#jax-boolean-value-JSX-元素属性为布尔值时,-true-可以省略)
+  10. [jsx props 风格缩进 2 空格](#jsx-indent-props-jsx-props-风格缩进-2-空格)
+  11. [校验多行 jsx 元素的标签结束位置](#jsx-closing-bracket-location-校验多行-jsx-元素的标签结束位置)
+  12. [校验有子节点 jsx 元素结束标签位置](#jsx-closing-tag-location-校验有子节点-jsx-元素结束标签位置)
+  13. [强制校验保证 jsx 元素花括号内部的空格](#jsx-curly-spacing-强制校验保证-jsx-元素花括号内部的空格)
+  14. [强制自闭合元素不能添加 children](#void-dom-elements-no-children-强制自闭合元素不能添加-children)
+  15. [校验 jsx 元素属性名和 = 之前不得有空格](#jsx-equals-spacing-校验-jsx-元素属性名和-=-之前不得有空格)
+  16. [禁止在事件处理函数中使用 bind 建议使用箭头函数](#jsx-no-bind-禁止在事件处理函数中使用-bind-建议使用箭头函数)
+  17. [校验 jsx 元素单行上属性个数最大值](#jsx-max-props-per-line-校验-jsx-元素单行上属性个数最大值)
+  18. [避免外部的 propTypes 使用](#forbid-foreign-prop-types-校验所有对象不使用-propTypes-属性)
 
-
-## forbid-foreign-prop-types 校验所有对象不使用 propTypes 属性
-
-### bad
-
-```js
-    import SomeComponent from './SomeComponent';
-    SomeComponent.propTypes;
-    var { propTypes } = SomeComponent;
-    SomeComponent['propTypes'];
-```
-
-### good
-
-```js
-    import SomeComponent, {propTypes as someComponentPropTypes} from './SomeComponent';
-```
-
-## jsx-pascal-case 自定义组件强制使用驼峰
-
-### bad
-
-```js
-    <Text_Component />
-    <Mycomponent />
-```
-
-### good
-
-```js
-    <TextComponent />
-    <MyComponent />
-    <div />
-```
-
-## no-typos 避免静态的类属性和组件生命周期拼写错误
-
-### bad
-
-```js
-    class MyComponent extends React.Component {
-    static PropTypes = {}
-    }
-
-    class MyComponent extends React.Component {
-    static proptypes = {}
-    }
-
-    class MyComponent extends React.Component {
-    static ContextTypes = {}
-    }
-
-    class MyComponent extends React.Component {
-    static contexttypes = {}
-    }
-```
-
-### good
-
-```js
-    class MyComponent extends React.Component {
-    static propTypes = {}
-    }
-
-    class MyComponent extends React.Component {
-    static contextTypes = {}
-    }
-
-    class MyComponent extends React.Component {
-    static childContextTypes = {}
-    }
-
-    class MyComponent extends React.Component {
-    static defaultProps = {}
-    }
-```
-
-
-## style-prop-object style 属性必须为对象
-
-### bad
-```js
-    <div style="color: 'red'" />
-
-    <div style={true} />
-
-    <Hello style={true} />
-
-    const styles = true;
-    <div style={styles} />
-```
-
-### good
-
-```js
-    <div style={{ color: "red" }} />
-
-    <Hello style={{ color: "red" }} />
-
-    const styles = { color: "red" };
-    <div style={styles} />
-    React.createElement("div", { style: { color: 'red' }});
-
-    React.createElement("Hello", { style: { color: 'red' }});
-
-    const styles = { height: '100px' };
-    React.createElement("div", { style: styles });
-```
-
-## no-multi-comp 在同一个文件中只能声明一个组件
-
-### bad
-
-```js
-    class Hello extends React.Component {
-        render() {
-            return <div>Hello {this.props.name}</div>;
-        }
-    }
-
-    class HelloJohn extends React.Component {
-        render() {
-            return <Hello name="John" />;
-        }
-    }
-```
-
-### good
-
-```js
-    var Hello = require('./components/Hello');
-
-    class HelloJohn extends React.Component {
-        render() {
-            return <Hello name="John" />;
-        }
-    }
-```
-
-### prefer-es6-class 强制使用 es6 的 class 创建组件
-
-### bad
-
-```js
-    var Hello = createReactClass({
-    render: function() {
-        return <div>Hello {this.props.name}</div>;
-    }
-    });
-```
-
-### good
-
-```js
-    class Hello extends React.Component {
-    render() {
-        return <div>Hello {this.props.name}</div>;
-    }
-    }
-```
-
-## no-this-in-sfc 函数组件中禁止使用 this
-
-### bad
-
-```js
-    function Foo(props) {
-    return (
-        <div>{this.props.bar}</div>
-    );
-    }
-
-    function Foo(props) {
-    const { bar } = this.props;
-    return (
-        <div>{bar}</div>
-    );
-    }
-
-    function Foo(props, context) {
-    return (
-        <div>
-        {this.context.foo ? this.props.bar : ''}
-        </div>
-    );
-    }
-
-    function Foo(props, context) {
-    const { foo } = this.context;
-    const { bar } = this.props;
-    return (
-        <div>
-        {foo ? bar : ''}
-        </div>
-    );
-    }
-```
-
-### goood
-
-```js
-    function Foo(props) {
-    return (
-        <div>{props.bar}</div>
-    );
-    }
-
-    function Foo(props) {
-    const { bar } = props;
-    return (
-        <div>{bar}</div>
-    );
-    }
-
-    function Foo({ bar }) {
-    return (
-        <div>{bar}</div>
-    );
-    }
-
-    function Foo(props, context) {
-    return (
-        <div>
-        {context.foo ? props.bar : ''}
-        </div>
-    );
-    }
-
-    function Foo(props, context) {
-    const { foo } = context;
-    const { bar } = props;
-    return (
-        <div>
-        {foo ? bar : ''}
-        </div>
-    );
-    }
-```
-
-## self-closing-comp 无子节点组件强制自闭合
-
-### bad
-
-```js
-    var HelloJohn = <Hello name="John"></Hello>;
-```
-
-### good
-
-```js
-    var contentContainer = <div className="content"></div>;
-
-    var intentionalSpace = <div>{' '}</div>;
-
-    var HelloJohn = <Hello name="John" />;
-
-    var Profile = <Hello name="John"><img src="picture.png" /></Hello>;
-
-    var HelloSpace = <Hello>{' '}</Hello>;
-```
 
 ## sort-comp 强制组件生命周期和事件处理函数书写顺序
 
@@ -377,6 +116,250 @@
             )
         }
     }
+```
+
+## no-multi-comp 在同一个文件中只能声明一个组件
+
+### bad
+
+```js
+    class Hello extends React.Component {
+        render() {
+            return <div>Hello {this.props.name}</div>;
+        }
+    }
+
+    class HelloJohn extends React.Component {
+        render() {
+            return <Hello name="John" />;
+        }
+    }
+```
+
+### good
+
+```js
+    var Hello = require('./components/Hello');
+
+    class HelloJohn extends React.Component {
+        render() {
+            return <Hello name="John" />;
+        }
+    }
+```
+
+
+## jsx-pascal-case 自定义组件强制使用驼峰
+
+### bad
+
+```js
+    <Text_Component />
+    <Mycomponent />
+```
+
+### good
+
+```js
+    <TextComponent />
+    <MyComponent />
+    <div />
+```
+
+## no-typos 避免静态的类属性和组件生命周期拼写错误
+
+### bad
+
+```js
+    class MyComponent extends React.Component {
+    static PropTypes = {}
+    }
+
+    class MyComponent extends React.Component {
+    static proptypes = {}
+    }
+
+    class MyComponent extends React.Component {
+    static ContextTypes = {}
+    }
+
+    class MyComponent extends React.Component {
+    static contexttypes = {}
+    }
+```
+
+### good
+
+```js
+    class MyComponent extends React.Component {
+    static propTypes = {}
+    }
+
+    class MyComponent extends React.Component {
+    static contextTypes = {}
+    }
+
+    class MyComponent extends React.Component {
+    static childContextTypes = {}
+    }
+
+    class MyComponent extends React.Component {
+    static defaultProps = {}
+    }
+```
+
+
+## style-prop-object style 属性必须为对象
+
+### bad
+```js
+    <div style="color: 'red'" />
+
+    <div style={true} />
+
+    <Hello style={true} />
+
+    const styles = true;
+    <div style={styles} />
+```
+
+### good
+
+```js
+    <div style={{ color: "red" }} />
+
+    <Hello style={{ color: "red" }} />
+
+    const styles = { color: "red" };
+    <div style={styles} />
+    React.createElement("div", { style: { color: 'red' }});
+
+    React.createElement("Hello", { style: { color: 'red' }});
+
+    const styles = { height: '100px' };
+    React.createElement("div", { style: styles });
+```
+
+### prefer-es6-class 强制使用 es6 的 class 创建组件
+
+### bad
+
+```js
+    var Hello = createReactClass({
+    render: function() {
+        return <div>Hello {this.props.name}</div>;
+    }
+    });
+```
+
+### good
+
+```js
+    class Hello extends React.Component {
+    render() {
+        return <div>Hello {this.props.name}</div>;
+    }
+    }
+```
+
+## no-this-in-sfc 函数组件中禁止使用 this
+
+### bad
+
+```js
+    function Foo(props) {
+    return (
+        <div>{this.props.bar}</div>
+    );
+    }
+
+    function Foo(props) {
+    const { bar } = this.props;
+    return (
+        <div>{bar}</div>
+    );
+    }
+
+    function Foo(props, context) {
+    return (
+        <div>
+        {this.context.foo ? this.props.bar : ''}
+        </div>
+    );
+    }
+
+    function Foo(props, context) {
+    const { foo } = this.context;
+    const { bar } = this.props;
+    return (
+        <div>
+        {foo ? bar : ''}
+        </div>
+    );
+    }
+```
+
+### good
+
+```js
+    function Foo(props) {
+    return (
+        <div>{props.bar}</div>
+    );
+    }
+
+    function Foo(props) {
+    const { bar } = props;
+    return (
+        <div>{bar}</div>
+    );
+    }
+
+    function Foo({ bar }) {
+    return (
+        <div>{bar}</div>
+    );
+    }
+
+    function Foo(props, context) {
+    return (
+        <div>
+        {context.foo ? props.bar : ''}
+        </div>
+    );
+    }
+
+    function Foo(props, context) {
+    const { foo } = context;
+    const { bar } = props;
+    return (
+        <div>
+        {foo ? bar : ''}
+        </div>
+    );
+    }
+```
+
+## self-closing-comp 无子节点组件强制自闭合
+
+### bad
+
+```js
+    var HelloJohn = <Hello name="John"></Hello>;
+```
+
+### good
+
+```js
+    var contentContainer = <div className="content"></div>;
+
+    var intentionalSpace = <div>{' '}</div>;
+
+    var HelloJohn = <Hello name="John" />;
+
+    var Profile = <Hello name="John"><img src="picture.png" /></Hello>;
+
+    var HelloSpace = <Hello>{' '}</Hello>;
 ```
 
 ## jax-boolean-value JSX 元素属性为布尔值时, true 可以省略
@@ -585,6 +568,24 @@
         lastName="Smith" 
     />
 ```
+
+## forbid-foreign-prop-types 校验所有对象不使用 propTypes 属性
+
+### bad
+
+```js
+    import SomeComponent from './SomeComponent';
+    SomeComponent.propTypes;
+    var { propTypes } = SomeComponent;
+    SomeComponent['propTypes'];
+```
+
+### good
+
+```js
+    import SomeComponent, {propTypes as someComponentPropTypes} from './SomeComponent';
+```
+
 
 ## 修改规则配置
 
