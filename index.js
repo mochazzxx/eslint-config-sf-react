@@ -110,7 +110,7 @@ module.exports = {
     }],
     "react/jsx-first-prop-new-line": ["error", "multiline-multiprop"],
     "react/jsx-boolean-value": "warn",
-    "react/jsx-indent": ["warn", 2],
+    "react/jsx-indent": "off",  // 不关闭可能会与prettier冲突
     "react/jsx-indent-props": "warn",
     "react/jsx-closing-bracket-location": "warn",
     "react/jsx-closing-tag-location": "warn",
@@ -118,7 +118,11 @@ module.exports = {
     "react/void-dom-elements-no-children": "error",
     "react/jsx-equals-spacing": ["error", "never"],
     "react/jsx-no-bind": ["warn", {"allowArrowFunctions": true, "allowFunctions": true }],
+<<<<<<< HEAD
     "react/jsx-max-props-per-line": ["error", { "maximum": 1, "when": "always" }],
+=======
+    'react/jsx-one-expression-per-line': 'off', // 不关闭会与prettier冲突
+>>>>>>> 75a8b79772dccd5e22283e0894793babbdb53458
     "react/prop-types": "off",
     "react/jsx-curly-spacing": "off",
     "react/jsx-one-expression-per-line": "off",
@@ -141,6 +145,8 @@ module.exports = {
         printWidth: 100, // 一行的字符数，如果超过会进行换行。默认80
         singleQuote: true, // 字符串是否使用单引号。默认false使用双引号
         trailingComma: "all", // 是否使用尾逗号，三个可选之’<none/es5/all>"
+        jsxBracketSameLine: false, // 尖括号换行
+        jsxSingleQuote: true, // jsx中使用单引号
         endOfLine: "lf",
       },
     ],

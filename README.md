@@ -27,6 +27,19 @@ Then create a file named `.eslintrc` with following contents in the root folder 
 }
 ```
 
+If you want, you can also create a file named `.prettierrc` with following contents in the root folder of your project:
+
+```json
+{
+  "printWidth": 100,
+  "singleQuote": true,
+  "trailingComma": "all",
+  "jsxBracketSameLine": false,
+  "endOfLine": "lf",
+  "jsxSingleQuote": true
+}
+```
+
 That's it! You can override the settings from `eslint-config-sf-react` by editing the `.eslintrc` file. Learn more about [configuring ESLint](http://eslint.org/docs/user-guide/configuring) on the ESLint website.
 
 If you want to enable even more accessibility rules, you can create an `.eslintrc` file in the root of your project with this content:
