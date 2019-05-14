@@ -118,11 +118,7 @@ module.exports = {
     "react/void-dom-elements-no-children": "error",
     "react/jsx-equals-spacing": ["error", "never"],
     "react/jsx-no-bind": ["warn", {"allowArrowFunctions": true, "allowFunctions": true }],
-<<<<<<< HEAD
     "react/jsx-max-props-per-line": ["error", { "maximum": 1, "when": "always" }],
-=======
-    'react/jsx-one-expression-per-line': 'off', // 不关闭会与prettier冲突
->>>>>>> 75a8b79772dccd5e22283e0894793babbdb53458
     "react/prop-types": "off",
     "react/jsx-curly-spacing": "off",
     "react/jsx-one-expression-per-line": "off",
