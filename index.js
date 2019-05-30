@@ -53,8 +53,6 @@ module.exports = {
   },
 
   rules: {
-    // Turn on it when packaging.
-    'no-unused-vars': process.env.NODE_ENV === 'production' ? "error" : "warn",
     "no-console": "warn",
     // https://github.com/yannickcr/eslint-plugin-react/tree/master/docs/rules
     "react/forbid-foreign-prop-types": ["warn", { allowInPropTypes: true }],
