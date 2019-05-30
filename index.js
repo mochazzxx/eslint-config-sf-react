@@ -26,7 +26,7 @@ module.exports = {
 
   parser: "babel-eslint",
 
-  extends: ["eslint:recommended", "plugin:jsx-a11y/recommended", "plugin:react/recommended", "plugin:prettier/recommended"],
+  extends: ["eslint:recommended", "plugin:jsx-a11y/recommended", "plugin:react/recommended", "plugin:prettier/recommended", "prettier/react"],// 兼容 prettier
 
   plugins: ["jsx-a11y", "react", "prettier"],
 
@@ -110,6 +110,7 @@ module.exports = {
         ]
       }
     }],
+    "react/jsx-first-prop-new-line": ["error", "multiline-multiprop"],
     "react/jsx-boolean-value": "warn",
     "react/jsx-indent": "off",  // 不关闭可能会与prettier冲突
     "react/jsx-indent-props": "warn",
@@ -119,7 +120,7 @@ module.exports = {
     "react/void-dom-elements-no-children": "error",
     "react/jsx-equals-spacing": ["error", "never"],
     "react/jsx-no-bind": ["warn", {"allowArrowFunctions": true, "allowFunctions": true }],
-    'react/jsx-one-expression-per-line': 'off', // 不关闭会与prettier冲突
+    "react/jsx-max-props-per-line": ["error", { "maximum": 1, "when": "always" }],
     "react/prop-types": "off",
     "react/jsx-curly-spacing": "off",
     "react/jsx-one-expression-per-line": "off",
