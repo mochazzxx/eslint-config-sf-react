@@ -22,13 +22,17 @@
 // We blacklist the globals that we deem potentially confusing.
 // To use them, explicitly reference them, e.g. `window.name` or `window.status`.
 module.exports = {
-  root: true,
+  parser: 'babel-eslint',
 
-  parser: "babel-eslint",
+  extends: [
+    'sf-js',
+    'plugin:jsx-a11y/recommended',
+    'plugin:react/recommended',
+    'plugin:prettier/recommended',
+    'prettier/react',
+  ], // 兼容 prettier
 
-  extends: ["eslint:recommended", "plugin:jsx-a11y/recommended", "plugin:react/recommended", "plugin:prettier/recommended", "prettier/react"],// 兼容 prettier
-
-  plugins: ["jsx-a11y", "react", "prettier"],
+  plugins: ['jsx-a11y', 'react', 'prettier'],
 
   env: {
     browser: true,
@@ -40,7 +44,7 @@ module.exports = {
 
   parserOptions: {
     ecmaVersion: 2018,
-    sourceType: "module",
+    sourceType: 'module',
     ecmaFeatures: {
       jsx: true,
     },
@@ -48,103 +52,96 @@ module.exports = {
 
   settings: {
     react: {
-      version: "detect",
+      version: 'detect',
     },
   },
 
   rules: {
-    "no-console": "warn",
     // https://github.com/yannickcr/eslint-plugin-react/tree/master/docs/rules
-    "react/forbid-foreign-prop-types": ["warn", { allowInPropTypes: true }],
-    "react/jsx-pascal-case": [
-      "warn",
+    'react/forbid-foreign-prop-types': ['warn', { allowInPropTypes: true }],
+    'react/jsx-pascal-case': [
+      'warn',
       {
         allowAllCaps: true,
         ignore: [],
       },
     ],
-    "react/no-typos": "error",
-    "react/style-prop-object": "warn",
-    "react/no-multi-comp": "warn",
-    "react/prefer-es6-class": ["warn", "always"],
-    "react/no-this-in-sfc": "error",
-    "react/self-closing-comp": "error",
-    "react/sort-comp": [
-      "error",
+    'react/no-typos': 'error',
+    'react/style-prop-object': 'warn',
+    'react/no-multi-comp': ['warn', { ignoreStateless: true }],
+    'react/prefer-es6-class': ['warn', 'always'],
+    'react/no-this-in-sfc': 'error',
+    'react/self-closing-comp': 'error',
+    'react/sort-comp': [
+      'error',
       {
-      order: [
-        'static-methods',
-        'lifecycle',
-        'everything-else',
-        'render'
-      ],
-      groups: {
-        lifecycle: [
-          'displayName',
-          'propTypes',
-          'contextTypes',
-          'childContextTypes',
-          'mixins',
-          'statics',
-          'defaultProps',
-          'constructor',
-          'getDefaultProps',
-          'state',
-          'getInitialState',
-          'getChildContext',
-          'getDerivedStateFromProps',
-          'componentWillMount',
-          'UNSAFE_componentWillMount',
-          'componentDidMount',
-          'componentWillReceiveProps',
-          'UNSAFE_componentWillReceiveProps',
-          'shouldComponentUpdate',
-          'componentWillUpdate',
-          'UNSAFE_componentWillUpdate',
-          'getSnapshotBeforeUpdate',
-          'componentDidUpdate',
-          'componentDidCatch',
-          'componentWillUnmount'
-        ]
-      }
-    }],
+        order: ['static-methods', 'lifecycle', 'everything-else', 'render'],
+        groups: {
+          lifecycle: [
+            'displayName',
+            'propTypes',
+            'contextTypes',
+            'childContextTypes',
+            'mixins',
+            'statics',
+            'defaultProps',
+            'constructor',
+            'getDefaultProps',
+            'state',
+            'getInitialState',
+            'getChildContext',
+            'getDerivedStateFromProps',
+            'componentWillMount',
+            'UNSAFE_componentWillMount',
+            'componentDidMount',
+            'componentWillReceiveProps',
+            'UNSAFE_componentWillReceiveProps',
+            'shouldComponentUpdate',
+            'componentWillUpdate',
+            'UNSAFE_componentWillUpdate',
+            'getSnapshotBeforeUpdate',
+            'componentDidUpdate',
+            'componentDidCatch',
+            'componentWillUnmount',
+          ],
+        },
+      },
+    ],
     // "react/jsx-first-prop-new-line": ["error", "multiline-multiprop"],
-    "react/jsx-boolean-value": "warn",
-    "react/jsx-indent": "off",  // 不关闭可能会与prettier冲突
-    "react/jsx-indent-props": "warn",
-    "react/jsx-closing-bracket-location": "warn",
-    "react/jsx-closing-tag-location": "warn",
-    "react/jsx-curly-spacing": ["error", {"when": "always", "children": true}],
-    "react/void-dom-elements-no-children": "error",
-    "react/jsx-equals-spacing": ["error", "never"],
-    "react/jsx-no-bind": ["warn", {"allowArrowFunctions": true, "allowFunctions": true }],
+    'react/jsx-boolean-value': 'warn',
+    'react/jsx-indent': 'off', // 不关闭可能会与prettier冲突
+    'react/jsx-indent-props': 'off',
+    'react/jsx-closing-bracket-location': 'warn',
+    'react/jsx-closing-tag-location': 'warn',
+    'react/void-dom-elements-no-children': 'error',
+    'react/jsx-equals-spacing': ['error', 'never'],
+    'react/jsx-no-bind': ['warn', { allowArrowFunctions: true, allowFunctions: true }],
     // "react/jsx-max-props-per-line": ["error", { "maximum": 1, "when": "always" }],
     'react/jsx-one-expression-per-line': 'off', // 不关闭会与prettier冲突
-    "react/prop-types": "off",
-    "react/jsx-curly-spacing": "off",
-    "react/jsx-one-expression-per-line": "off",
-    //https://github.com/evcohen/eslint-plugin-jsx-a11y 
-    "jsx-a11y/click-events-have-key-events": "off",
-    "jsx-a11y/nteractive-supports-focus": "off",
-    "jsx-a11y/no-interactive-element-to-noninteractive-role": "warn",
-    "jsx-a11y/no-noninteractive-element-to-interactive-role": "warn",
-    "jsx-a11y/media-has-caption": "off",
-    "jsx-a11y/mouse-events-have-key-events": "off",
-    "jsx-a11y/no-noninteractive-element-interactions": "off",
-    "jsx-a11y/no-onchange": "off",
-    "jsx-a11y/no-static-element-interactions": "off",
-    "jsx-a11y/no-access-key": "off",
-    "jsx-a11y/anchor-has-content": "warn",
+    'react/prop-types': 'off',
+    'react/jsx-curly-spacing': 'off',
+    // https://github.com/evcohen/eslint-plugin-jsx-a11y
+    'jsx-a11y/click-events-have-key-events': 'off',
+    'jsx-a11y/nteractive-supports-focus': 'off',
+    'jsx-a11y/no-interactive-element-to-noninteractive-role': 'warn',
+    'jsx-a11y/no-noninteractive-element-to-interactive-role': 'warn',
+    'jsx-a11y/media-has-caption': 'off',
+    'jsx-a11y/mouse-events-have-key-events': 'off',
+    'jsx-a11y/no-noninteractive-element-interactions': 'off',
+    'jsx-a11y/no-onchange': 'off',
+    'jsx-a11y/no-static-element-interactions': 'off',
+    'jsx-a11y/no-access-key': 'off',
+    'jsx-a11y/anchor-has-content': 'warn',
     // https://github.com/gajus/eslint-plugin-flowtype
-    "prettier/prettier": [
-      "error",
+    'prettier/prettier': [
+      'error',
       {
         printWidth: 100, // 一行的字符数，如果超过会进行换行。默认80
         singleQuote: true, // 字符串是否使用单引号。默认false使用双引号
-        trailingComma: "all", // 是否使用尾逗号，三个可选之’<none/es5/all>"
+        trailingComma: 'all', // 是否使用尾逗号，三个可选之’<none/es5/all>"
         jsxBracketSameLine: false, // 尖括号换行
         jsxSingleQuote: true, // jsx中使用单引号
-        endOfLine: "lf",
+        endOfLine: 'lf',
       },
     ],
   },
