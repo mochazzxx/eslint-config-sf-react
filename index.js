@@ -5,8 +5,6 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-"use strict";
-
 // Inspired by https://github.com/airbnb/javascript but less opinionated.
 
 // We use eslint-loader so even warnings are very visible.
@@ -32,7 +30,7 @@ module.exports = {
     'prettier/react',
   ], // 兼容 prettier
 
-  plugins: ['jsx-a11y', 'react', 'prettier'],
+  plugins: ['react-hooks', 'jsx-a11y', 'react', 'prettier'],
 
   env: {
     browser: true,
@@ -144,5 +142,8 @@ module.exports = {
         endOfLine: 'lf',
       },
     ],
+    // hooks相关规则
+    'react-hooks/rules-of-hooks': 'error',
+    'react-hooks/exhaustive-deps': 'warn',
   },
 };
